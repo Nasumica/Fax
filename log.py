@@ -9,42 +9,6 @@ def stepen(x, n: int):
         y *= stepen(x * x, n >> 1)
     return y 
 
-def tower(n):
-    '''
-    The Tower of Hanoi
-    '''
-    m = 0
-    def hanoi(n, f, t, s):
-        nonlocal m
-        if n > 0:
-            hanoi(n - 1, f, s, t)
-            m += 1
-            print("%4d. Move disc %d from %s to %s" % (m, n, f, t))
-            hanoi(n - 1, s, t, f)
-    hanoi(n, "A", "B", "C")
-
-def pascal(n, k):
-    if k < 0 or n < k:
-        return 0
-    elif k == 0 or n == k:
-        return 1
-    else:
-        return pascal(n - 1, k - 1) + pascal(n - 1, k)
-
-def fib(n):
-    if n > 1:
-        return fib(n - 2) + fib(n - 1)
-    elif n < 0: 
-        return fib(n + 2) - fib(n + 1)
-    else:
-        return n
-
-def fact(n):
-    if n > 1:
-        return n * fact(n - 1)
-    else:
-        return 1
-
 def sqr(x):
     return x * x
 
@@ -174,24 +138,3 @@ def power(x, y):
 def root(x, y): 
     return power(x, 1/y)
 
-def newton(n, k):
-    if k == 0 or k == n: return 1
-    if k == 1: return n
-    if n == 0: return 0
-    if k > 0:
-        if n > 0:
-            if k > n: return 0
-            return newton(n - 1, k - 1) + newton(n - 1, k)
-        else:
-            return newton(n + 1, k) - newton(n, k - 1)
-    else:
-        if n > 0 or n < k: return 0
-        return newton(n + 1, k + 1) - newton(n, k + 1)
-        
-
-# print(stepen(1 - 1/1000000, 1000000))
-
-for k in range(6, -7, -1):
-    for n in range(-7, 8):
-        print("%5d" % (newton(n, k)), end = " ")
-    print()
